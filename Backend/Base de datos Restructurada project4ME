@@ -1,0 +1,121 @@
+CREATE TABLE Patrocinadores
+(
+patrocinador_id INT NOT NULL PRIMARY KEY,
+patrocinador_nome varchar(100) NOT NULL
+);
+
+CREATE TABLE Clientes
+(
+cliente_id INT NOT NULL PRIMARY KEY,
+cliente_nome varchar(100) NOT NULL
+);
+
+CREATE TABLE Roles
+(
+role_id INT NOT NULL PRIMARY KEY,
+role_nome varchar(30) NOT NULL,
+permissoes int NOT NULL
+);
+
+CREATE TABLE Usuarios
+(
+usuario_id INT NOT NULL PRIMARY KEY,
+email varchar(255) NOT NULL,
+role INT,
+FOREIGN KEY (role) REFERENCES Roles(role_id)
+);
+
+CREATE TABLE Status_Projeto
+(
+status_projeto_id INT NOT NULL PRIMARY KEY,
+status_projeto_nome varchar(100) NOT NULL
+);
+
+CREATE TABLE Motivos_Projeto
+(
+motivo_projeto_id INT NOT NULL PRIMARY KEY,
+motivo_projeto_nome varchar(100) NOT NULL
+);
+
+CREATE TABLE Fases_Projeto
+(
+fase_projeto_id INT NOT NULL PRIMARY KEY,
+fase_projeto_nome varchar(100) NOT NULL
+);
+
+CREATE TABLE Projetos
+(
+projeto_id INT NOT NULL PRIMARY KEY,
+cliente INT,
+FOREIGN KEY (cliente) REFERENCES Clientes(cliente_id),
+patrocinador INT,
+FOREIGN KEY (patrocinador) REFERENCES Patrocinadores(patrocinador_id),
+projeto_nome varchar(100) NOT NULL,
+projeto_numero_proposta varchar(150) NOT NULL,
+projeto_descricao TEXT,
+status INT,
+FOREIGN KEY (status) REFERENCES Status_Projeto(status_projeto_id),
+projeto_data_inicio DATE NOT NULL,
+projeto_data_termino DATE NOT NULL,
+projeto_gp_cliente varchar(255),
+projeto_gp_s4me INT,
+FOREIGN KEY (projeto_gp_s4me) REFERENCES Usuarios(usuario_id),
+projeto_interno BIT NOT NULL DEFAULT 0,
+projeto_horas_contratadas DECIMAL(2,1) NOT NULL DEFAULT 0.0,
+created_at DATE NOT NULL,
+created_by INT,
+FOREIGN KEY (created_by) REFERENCES Usuarios(usuario_id),
+updated_at DATE NOT NULL,
+updated_by INT,
+FOREIGN KEY (updated_by) REFERENCES Usuarios(usuario_id)
+);
+
+CREATE TABLE Comentarios_Projeto
+(
+comentario_projeto_id INT NOT NULL PRIMARY KEY,
+usuario INT,
+FOREIGN KEY (usuario) REFERENCES Usuarios(usuario_id),
+projeto INT,
+FOREIGN KEY (projeto) REFERENCES Projetos(projeto_id),
+comentario_projeto TEXT NOT NULL
+);
+
+CREATE TABLE Banco_de_Horas
+(
+banco_horas_id INT NOT NULL PRIMARY KEY,
+usuario INT,
+FOREIGN KEY (usuario) REFERENCES Usuarios(usuario_id),
+banco_horas DECIMAL(2,1) NOT NULL DEFAULT 0.0
+);
+
+CREATE TABLE Horas_Projeto
+(
+hora_projeto_id INT NOT NULL PRIMARY KEY,
+usuario INT,
+FOREIGN KEY (usuario) REFERENCES Usuarios(usuario_id),
+projeto INT,
+FOREIGN KEY (projeto) REFERENCES Projetos(projeto_id),
+horas_projeto DECIMAL(2,1) NOT NULL DEFAULT 0.0,
+data_horas_projeto DATE NOT NULL,
+descricao_lancamento TEXT,
+faturar_horas_projeto BIT NOT NULL DEFAULT 0,
+hora_extra_projeto BIT NOT NULL DEFAULT 0,
+hora_extra_inicio TIME NOT NULL,
+hora_extra_fim TIME NOT NULL,
+inserir_banco_horas BIT NOT NULL DEFAULT 0,
+motivo INT,
+FOREIGN KEY (motivo) REFERENCES Motivos_Projeto(motivo_projeto_id),
+fase INT,
+FOREIGN KEY (fase) REFERENCES Fases_Projeto(fase_projeto_id),
+created_at DATE NOT NULL,
+updated_at DATE NOT NULL,
+);
+
+CREATE TABLE Interacoes_Projeto
+(
+usuario INT,
+FOREIGN KEY (usuario) REFERENCES Usuarios(usuario_id),
+projeto INT,
+FOREIGN KEY (projeto) REFERENCES Projetos(projeto_id),
+);
+
