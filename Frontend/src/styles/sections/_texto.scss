@@ -1,0 +1,84 @@
+// text color
+
+// Text Color
+
+@each $nombre, $color in $colores {
+    .text-#{'' + $nombre}{
+        color: $color;
+    }
+
+    .text-hover-#{'' + $nombre}:hover{
+        color: darken($color, 20%);
+    }
+}
+
+
+@each $valor, $color in $grays {
+    .text-gray-#{'' + $valor}{
+        color: $color;
+    }
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
+p {
+    line-height: 27px;
+}
+
+.fs-xs{
+    font-size: 8px;
+}
+
+.fs-s{
+    font-size: 12px;
+}
+
+.fs-normal {
+    font-size: 16px;
+}
+
+.fs-m{
+    font-size: 18px;
+}
+
+.fs-lg {
+    font-size: 24px;
+}
+
+.fs-xl {
+    font-size: 40px;
+}
+
+.fs-xxl {
+    font-size: 60px;
+}
+
+
+.display-1 {
+    font-weight: 700;
+    font-size: 64px;
+}
+
+.display-2 {
+    font-weight: 700;
+    font-size: 54px;
+}
+
+.display-2 {
+    font-weight: 700;
+    font-size: 44px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}

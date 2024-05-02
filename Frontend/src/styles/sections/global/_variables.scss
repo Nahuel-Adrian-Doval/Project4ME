@@ -1,0 +1,55 @@
+// Variables
+$max-container: 1200px;
+
+// colores
+$black: #000;
+$white: #ffffff;
+$gray: rgb(206, 212, 218);
+$dark: #212529;
+
+$danger: #DC3545;
+$success: #198754;
+
+$primary100: #618ec2;
+$primary200: #218bc5;
+$primary300: #153e6f;
+$primary400: #0b345b;
+
+$red100: #e80680;
+$red200: #a2326d;
+
+$green100: #57fdd8;
+$green200: #00c79c;
+
+$violet100: #3837c1;
+$violet200: #311c5a;
+
+$yellow100: #f3d51b;
+$yellow200: #e6cc1f;
+
+$orange100: #ecaa10;
+$orange200: #ef9345;
+
+$colores:(
+    black: $black,
+    white: $white,
+    gray: $gray,
+    dark: $dark,
+    danger: $danger,
+    success: $success,
+    primary100: $primary100,
+    primary200: $primary200,
+    primary300: $primary300,
+    primary400: $primary400,
+    red100: $red100,
+    red200: $red200,
+    green100: $green100,
+    green200: $green200,
+    violet100: $violet100,
+    violet200: $violet200,
+    yellow100: $yellow100,
+    yellow200: $yellow200,
+    orange100: $orange100,
+    orange200: $orange200,
+);
+
